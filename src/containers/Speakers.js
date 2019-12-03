@@ -1,65 +1,30 @@
-import React, {
-  useMemo
-} from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import React, { useMemo } from "react";
 
-
-import SpeakerDetail from "../components/SpeakerDetail";
-import useAxiosFetch from "../hooks/useAxiosFetch";
+import SpeakerCards from "../components/SpeakerCards";
+//import useAxiosFetch from "../hooks/useAxiosFetch";
+import useAxios from "axios-hooks";
 
 const Speakers = ({}) => {
-  const {
-    data,
-    isLoading,
-    hasErrored,
-    errorMessage  } = useAxiosFetch("http://localhost:4000/speakers", []);
+  // const {
+  //   data,
+  //  loading,
+  //   error,
+  //   error  } = useAxiosFetch("http://localhost:4000/speakers", []);
 
-  const newSpeakerList = useMemo(
-    () =>
-      data.sort(function(a, b) {
-        if (a.firstName < b.firstName) {
-          return -1;
-        }
-        if (a.firstName > b.firstName) {
-          return 1;
-        }
-        return 0;
-      }),
-    [data]
+  const [{ data, loading, error }, refetch] = useAxios(
+    "http://localhost:4000/speakers"
   );
 
-  const speakerListFiltered = isLoading ? [] : newSpeakerList;
+  const speakerListFiltered = loading ? [] : data;
 
-  if (hasErrored)
+  if (error)
     return (
-      <div>
-        {errorMessage}&nbsp;"Make sure you have launched "npm run json-server"
-      </div>
+      <div>{error}&nbsp;"Make sure you have launched db or json server "</div>
     );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
 
-  return (
-    <div>
-      <h1>Our Speakers</h1>
-      <Container>
-        <Row>
-          {speakerListFiltered.map(({ id, firstName, lastName, bio }) => {
-            return (
-              <SpeakerDetail
-                key={id}
-                id={id}
-                firstName={firstName}
-                lastName={lastName}
-                bio={bio}
-              />
-            );
-          })}
-        </Row>
-      </Container>
-    </div>
-  );
+  return <SpeakerCards speakerList={speakerListFiltered} />;
 };
 
 export default Speakers;

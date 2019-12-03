@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-const SpeakerDetail = React.memo(
+
+const SpeakerCard = React.memo(
   ({ id, firstName, lastName, favorite, bio, onHeartFavoriteHandler }) => {
     console.log(`SpeakerDetail:${id} ${firstName} ${lastName} ${favorite}`);
 
@@ -20,4 +21,4 @@ const SpeakerDetail = React.memo(
   }
 );
 
-export default SpeakerDetail;
+export default SpeakerCard;

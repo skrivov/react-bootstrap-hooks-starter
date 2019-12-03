@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="jumbotron"
+  >
+    <h1>
+      Software Design in the Era of Cloud
+    </h1>
+    <p>
+      Discussing New Trends, Patterns , and  Best Practices
+    </p>
+  </div>
+  <nav
+    className="navbar navbar-expand navbar-dark bg-dark"
+  >
+    <a
+      className="navbar-brand"
+      href="#"
+    >
+      Enterprise Academy 
+    </a>
+    <div
+      className="navbar-nav"
+      onKeyDown={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rb-event-key="/"
+        href="/"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        Sessions
+      </a>
+      <a
+        className="nav-link"
+        data-rb-event-key="/speakers"
+        href="/speakers"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        Speakers
+      </a>
+    </div>
+  </nav>
+  <div>
+    Loading...
+  </div>
+</div>
+`;
